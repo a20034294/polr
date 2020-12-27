@@ -23,6 +23,7 @@
         </ul>
     </div>
     <div class='col-md-10'>
+        <div class="qr-code-container"></div>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
                 <h2>Welcome to your {{env('APP_NAME')}} dashboard!</h2>
@@ -144,4 +145,7 @@
 <script src='/js/datatables.min.js'></script>
 <script src='/js/api.js'></script>
 <script src='/js/AdminCtrl.js'></script>
+<script src='/js/qrcode.min.js'></script>
+<script src='/js/clipboard.min.js'></script>
+<script src='/js/shorten_result.js'></script>
 @endsection

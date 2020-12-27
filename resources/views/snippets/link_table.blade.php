@@ -11,6 +11,7 @@
             <th>Disable</th>
             <th>Delete</th>
             @endif
+            <th>Qrcode</th>
         </tr>
     </thead>
 </table>

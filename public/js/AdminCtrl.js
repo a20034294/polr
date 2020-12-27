@@ -159,7 +159,8 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
                     {data: 'creator', name: 'creator'},
 
                     {data: 'disable', name: 'disable', orderable: false, searchable: false},
-                    {data: 'delete', name: 'delete', orderable: false, searchable: false}
+                    {data: 'delete', name: 'delete', orderable: false, searchable: false},
+                    {data: 'qrcode', name: 'qrcode', orderable: false, searchable: false}
 
                 ]
             }, datatables_config));
@@ -172,7 +173,8 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
                 {className: 'wrap-text', data: 'short_url', name: 'short_url'},
                 {className: 'wrap-text', data: 'long_url', name: 'long_url'},
                 {data: 'clicks', name: 'clicks'},
-                {data: 'created_at', name: 'created_at'}
+                {data: 'created_at', name: 'created_at'},
+                {data: 'qrcode', name: 'qrcode', orderable: false, searchable: false}
             ]
         }, datatables_config));
     };
@@ -320,6 +322,22 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
                 $scope.reloadLinkTables();
             });
         }
+    };
+
+    // Qrcode show
+    $scope.qrcodeLink = function($event, link_ending) {
+        var original_link = window.location.origin + '/' + link_ending;
+        console.log(original_link);
+        var container = $('.qr-code-container');
+        container.empty();
+        new QRCode(container.get(0), {
+            text: original_link,
+            width: 560,
+            height: 560
+        });
+        container.find('img').attr('alt', original_link);
+        container.find('img').attr('style', 'padding: 10px; background-color: white');
+        container.show();
     };
 
     // Disable and enable links

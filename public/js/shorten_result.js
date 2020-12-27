@@ -15,8 +15,8 @@ $('#generate-qr-code').click(function () {
     container.empty();
     new QRCode(container.get(0), {
         text: original_link,
-        width: 280,
-        height: 280
+        width: 560,
+        height: 560
     });
     container.find('img').attr('alt', original_link);
     container.show();

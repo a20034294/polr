@@ -46,8 +46,16 @@ class AdminPaginationController extends Controller {
     public function renderDeleteLinkCell($link) {
         // Add "Delete" action button
         return '<a ng-click="deleteLink($event, \'' . e($link->short_url)  . '\')"
-            class="btn btn-sm btn-warning delete-link">
+            class="btn btn-sm btn-warning delete-link disabled">
             Delete
+        </a>';
+    }
+
+    public function renderQrcodeLinkCell($link) {
+        // Add "Qrcode" action button
+        return '<a ng-click="qrcodeLink($event, \'' . e($link->short_url)  . '\')"
+            class="btn btn-sm btn-primary">
+            Qrcode
         </a>';
     }
 
@@ -145,6 +153,7 @@ class AdminPaginationController extends Controller {
         return Datatables::of($admin_links)
             ->addColumn('disable', [$this, 'renderToggleLinkActiveCell'])
             ->addColumn('delete', [$this, 'renderDeleteLinkCell'])
+            ->addColumn('qrcode', [$this, 'renderQrcodeLinkCell'])
             ->editColumn('clicks', [$this, 'renderClicksCell'])
             ->editColumn('long_url', [$this, 'renderLongUrlCell'])
             ->escapeColumns(['short_url', 'creator'])
@@ -159,6 +168,7 @@ class AdminPaginationController extends Controller {
             ->select(['id', 'short_url', 'long_url', 'clicks', 'created_at']);
 
         return Datatables::of($user_links)
+            ->addColumn('qrcode', [$this, 'renderQrcodeLinkCell'])
             ->editColumn('clicks', [$this, 'renderClicksCell'])
             ->editColumn('long_url', [$this, 'renderLongUrlCell'])
             ->escapeColumns(['short_url'])
